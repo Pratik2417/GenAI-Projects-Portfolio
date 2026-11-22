@@ -1,0 +1,22 @@
+name: GenAI Portfolio CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependencies
+        run: pip install pytest langchain langchain-community pydantic pydantic-settings
+      - name: Run Unit & Contract Tests
+        run: |
+          PYTHONPATH=01-enterprise-document-intelligence-rag pytest 01-enterprise-document-intelligence-rag/tests
+          PYTHONPATH=02-intelligent-customer-support-chatbot pytest 02-intelligent-customer-support-chatbot/tests
+          PYTHONPATH=03-rag-knowledge-management-system pytest 03-rag-knowledge-management-system/tests
+          PYTHONPATH=04-ai-resume-analyzer-jd-matcher pytest 04-ai-resume-analyzer-jd-matcher/tests
