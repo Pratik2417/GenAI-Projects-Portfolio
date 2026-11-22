@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  doc-rag:
+    build: ./01-enterprise-document-intelligence-rag
+    ports: ['8001:8000']
+    env_file: ['./01-enterprise-document-intelligence-rag/.env.example']
+  support-bot:
+    build: ./02-intelligent-customer-support-chatbot
+    ports: ['8002:8000']
+    env_file: ['./02-intelligent-customer-support-chatbot/.env.example']
+  kb-rag:
+    build: ./03-rag-knowledge-management-system
+    ports: ['8003:8000']
+    env_file: ['./03-rag-knowledge-management-system/.env.example']
+  resume-matcher:
+    build: ./04-ai-resume-analyzer-jd-matcher
+    ports: ['8004:8000']
+    env_file: ['./04-ai-resume-analyzer-jd-matcher/.env.example']
